@@ -1,0 +1,29 @@
+{
+  "name": "Blast",
+  "version": "1.1",
+  "description": "Blast",
+  "scripts": {
+    "build": "webpack --config webpack/prod.js",
+    "start": "webpack serve --config ./webpack/base.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuto4ki/blast.git"
+  },
+  "author": "Svetlana Safonova",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^4.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "phaser": "^3.55.2"
+  }
+}
