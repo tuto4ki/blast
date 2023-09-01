@@ -11,7 +11,7 @@ module.exports = {
   devtool: "inline-source-map",
   devServer: {
     static:{
-      directory: path.resolve(__dirname, './src'),
+      directory: path.resolve(__dirname, '../src/assets'),
       watch: true
     },
     historyApiFallback: true
