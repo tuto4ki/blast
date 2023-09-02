@@ -4,7 +4,9 @@ import {
   COLOR_BACKGROUND,
   SCENE_START,
   SCENE_GAME,
+  BUTTON_STYLE,
 } from '../constGame';
+import { Button } from '../button';
 
 export class StartScene extends Phaser.Scene {
   constructor() {
@@ -14,15 +16,12 @@ export class StartScene extends Phaser.Scene {
   create() {
     this.cameras.main.setBackgroundColor(COLOR_BACKGROUND);
 
-    const btnPlay = this.add
-      .image(+this.game.config.width / 2, +this.game.config.height / 2, 'scoreButton')
-      .setInteractive({ useHandCursor: true });
-    //btnPlay.name = EBUTTON.play;
-    btnPlay.on('pointerdown', () => {
-      this.scene.pause();
-      this.scene.start(SCENE_GAME, {
-        scene: SCENE_START,
-      });
-    });
+    new Button(
+        this,
+        +this.game.config.width / 2,
+        +this.game.config.height / 2, 
+        'scoreButton',
+        'Start'
+      ).onClick(SCENE_START, SCENE_GAME);
   }
 }

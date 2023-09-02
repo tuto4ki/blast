@@ -6,3 +6,9 @@ export const WIDTH_GAME = 800;
 export const HEIGHT_GAME = 600;
 
 export const COLOR_BACKGROUND = '#A3A3A3';
+
+export const BUTTON_STYLE = {
+  fontFamily: 'marvinFont',
+  fontSize: '30px',
+  color: '#fff',
+};
