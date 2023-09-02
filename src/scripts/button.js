@@ -4,7 +4,7 @@ export class Button extends Phaser.GameObjects.Container {
 
   #button;
   #text;
-  
+
   constructor(scene, posX, posY, bg, label) {
     super(scene, posX, posY);
     this.#button = scene.add

@@ -43,6 +43,7 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image('button', './images/button.png');
     this.load.image('darkBlueProgressBar', './images/darkBlueProgressBar.png');
     this.load.image('ellipse', './images/ellipse.png');
+    this.load.image('field', './images/field.png');
     this.load.image('green', './images/green.png');
     this.load.image('greenProgressBar', './images/greenProgressBar.png');
     this.load.image('increase', './images/increase.png');

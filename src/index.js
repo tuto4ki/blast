@@ -1,3 +1,3 @@
 import { Game } from './scripts/game';
 
-new Game();
+const game = new Game();
