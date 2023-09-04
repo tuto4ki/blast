@@ -30,15 +30,16 @@ export default class Tail {
       duration: 500,
     });
 
-    //this.removeTail = this.removeTail.bind(this);
   }
 
-  tweenTail(scene, fromY, y) {
+  tweenTail(scene, fromY, y, fromX, x) {
     this.y = y;
     scene.tweens.add({
       targets: this.image,
       y: fromY + y * (this.image.height * this.image.scaleY),
+      x: fromX + x * (this.image.width * this.image.scaleX),
       duration: 500,
+      ease: 'Power1',
     });
   }
 

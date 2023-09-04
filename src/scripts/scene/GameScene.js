@@ -16,9 +16,19 @@ export class GameScene extends Phaser.Scene {
   }
 
   create() {
-    this.view = new BlastView(this, 250, 350, this.controller.onClick);
+    this.view = new BlastView(
+      this,
+      250,
+      350, {
+        onClick: this.controller.onClick,
+        checkMove: this.controller.checkMove,
+      });
 
     this.model.subscribe(this.view.updateField);
     this.model.initial();
+  }
+
+  update() {
+    this.view.update();
   }
 }

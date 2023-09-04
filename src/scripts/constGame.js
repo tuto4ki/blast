@@ -16,8 +16,8 @@ export const BUTTON_STYLE = {
 
 export const NUM_COLOR = 5;
 
-export const ROWS = 9;
-export const COLUMNS = 9;
+export const ROWS = 5;
+export const COLUMNS = 4;
 
 /**
  * 0 blue
@@ -27,3 +27,5 @@ export const COLUMNS = 9;
  * 4 yellow
  */
 export const TAIL_PIC = ['blue', 'green', 'purple', 'red', 'yellow'];
+
+export const COUNT_SHUFFLE = 4;

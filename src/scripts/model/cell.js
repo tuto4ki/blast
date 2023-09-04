@@ -24,4 +24,9 @@ export class Cell {
   setRandomColor() {
     return Math.floor(Math.random() * NUM_COLOR);
   }
+
+  setValue(x, y) {
+    this.x = x;
+    this.y = y;
+  }
 }

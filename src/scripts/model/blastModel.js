@@ -41,6 +41,16 @@ export default class BlastModel {
     this.removeCell(i, j);
   }
 
+  swapCell(cell1, cell2) {
+
+    let temp = this.cells[cell1.x][cell1.y];
+    this.cells[cell1.x][cell1.y] = this.cells[cell2.x][cell2.y];
+    this.cells[cell2.x][cell2.y] = temp;
+
+    this.cells[cell1.x][cell1.y].setValue(cell1.x, cell1.y);
+    this.cells[cell2.x][cell2.y].setValue(cell2.x, cell2.y);
+  }
+
   subscribe (fn) {
     this.observer = fn;
   }

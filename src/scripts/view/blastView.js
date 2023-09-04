@@ -14,6 +14,7 @@ export class BlastView extends Phaser.GameObjects.Container {
   controller;
   fromX;
   fromY;
+  isTween = false;
 
   constructor(scene, x, y, controller) {
     super(scene, x, y)
@@ -28,12 +29,13 @@ export class BlastView extends Phaser.GameObjects.Container {
     this.fromX = this.x - (+this.pictureBg.width * +this.pictureBg.scaleX) / 2 + PADDING.x;
     this.fromY = this.y - (+this.pictureBg.height * +this.pictureBg.scaleY) / 2 + PADDING.y;
 
-
     this.controller = controller;
   }
 
   updateField(cells) {
-    
+
+    this.isTween = true;
+
     const cellsFlat = cells.flat();
     for (let value of this.tails.entries()) {
       const cell = cellsFlat.find((item) => item.id == value[0]);
@@ -52,12 +54,23 @@ export class BlastView extends Phaser.GameObjects.Container {
 
           this.tails.set(
             cell.id,
-            new Tail(this.scene, this.fromX, this.fromY, cell.x, cell.y, cell.numColor, cell.id, this.controller)
+            new Tail(this.scene, this.fromX, this.fromY, cell.x, cell.y, cell.numColor, cell.id, this.controller.onClick)
           );
 
-        } else if (tail && tail.y != cell.y) {
-          tail.tweenTail(this.scene, this.fromY, cell.y);
+        } else if (tail && (tail.y != cell.y || tail.x != cell.x)) {
+          tail.tweenTail(this.scene, this.fromY, cell.y, this.fromX, cell.x);
         }
+      }
+    }
+  }
+
+  update() {
+    if (this.isTween) {
+      const countTween = this.scene.tweens.getTweens().length;
+      if (!countTween) {
+        this.isTween = false;
+        // check move exists
+        this.controller.checkMove();
       }
     }
   }
