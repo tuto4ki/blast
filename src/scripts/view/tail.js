@@ -1,23 +1,57 @@
-import { SCALE_GAME, TAIL_PIC } from '../constGame';
+import { SCALE_GAME, TAIL_PIC, ROWS } from '../constGame';
 
 export default class Tail {
 
   image;
   #type;
-  #id;
+  id;
+  x;
+  y
 
-  constructor(scene, fromX, fromY, x, y, type, id) {
+  constructor(scene, fromX, fromY, x, y, type, id, controller) {
     this.image = scene.add
       .image(0, 0, TAIL_PIC[type])
       .setScale(SCALE_GAME)
       .setOrigin(0.5)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
-        console.log(id);
+        controller(id);
       });;
     this.image.x = fromX + x * (this.image.width * this.image.scaleX);
-    this.image.y = fromY + y * (this.image.height * this.image.scaleY);
+    this.image.y = fromY + y * (this.image.height * this.image.scaleY) - (this.image.height * this.image.scaleY) * ROWS;
     this.#type = type;
-    this.#id = id;
+    this.id = id;
+    this.x = x;
+    this.y = y;
+
+    scene.tweens.add({
+      targets: this.image,
+      y: fromY + y * (this.image.height * this.image.scaleY),
+      duration: 500,
+    });
+
+    //this.removeTail = this.removeTail.bind(this);
+  }
+
+  tweenTail(scene, fromY, y) {
+    this.y = y;
+    scene.tweens.add({
+      targets: this.image,
+      y: fromY + y * (this.image.height * this.image.scaleY),
+      duration: 500,
+    });
+  }
+
+  removeTail(scene, callback) {
+    scene.tweens.add({
+      targets: this.image,
+      scale: 0.1,
+      duration: 200,
+      onComplete: () => {
+        this.image.destroy();
+        callback();
+    },
+    });
+    
   }
 }

@@ -8,12 +8,14 @@ const PADDING = {
 
 export class BlastView extends Phaser.GameObjects.Container {
 
-  isAnimation = false;
   pictureBg;
   tails;
   scene;
+  controller;
+  fromX;
+  fromY;
 
-  constructor(scene, x, y) {
+  constructor(scene, x, y, controller) {
     super(scene, x, y)
     this.scene = scene;
     this.pictureBg = this.scene.add
@@ -22,25 +24,41 @@ export class BlastView extends Phaser.GameObjects.Container {
       .setOrigin(0.5);
     this.tails = new Map();
     this.updateField = this.updateField.bind(this);
+    
+    this.fromX = this.x - (+this.pictureBg.width * +this.pictureBg.scaleX) / 2 + PADDING.x;
+    this.fromY = this.y - (+this.pictureBg.height * +this.pictureBg.scaleY) / 2 + PADDING.y;
+
+
+    this.controller = controller;
   }
 
   updateField(cells) {
-    this.isAnimation = true;
-    const fromX = this.x - (+this.pictureBg.width * +this.pictureBg.scaleX) / 2 + PADDING.x;
-    const fromY = this.y - (+this.pictureBg.height * +this.pictureBg.scaleY) / 2 + PADDING.y;
+    
+    const cellsFlat = cells.flat();
+    for (let value of this.tails.entries()) {
+      const cell = cellsFlat.find((item) => item.id == value[0]);
+      if (!cell) {
+        value[1].removeTail(this.scene, () => this.tails.delete(value[1].id));
+      }
+    }
+
     for(let i = 0; i < cells.length; i++) {
       for(let j = 0; j < cells[i].length; j++) {
+        
         const cell = cells[i][j];
-        this.tails.set(
-          cell.id,
-          new Tail(this.scene, fromX, fromY, cell.x, cell.y, cell.numColor, cell.id)
-        );
+        let tail = this.tails.get(cell.id);
+        
+        if (!tail) {
+
+          this.tails.set(
+            cell.id,
+            new Tail(this.scene, this.fromX, this.fromY, cell.x, cell.y, cell.numColor, cell.id, this.controller)
+          );
+
+        } else if (tail && tail.y != cell.y) {
+          tail.tweenTail(this.scene, this.fromY, cell.y);
+        }
       }
     }
   }
-
-  update() {
-    
-  }
-
 }
