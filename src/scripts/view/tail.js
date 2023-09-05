@@ -16,7 +16,7 @@ export default class Tail {
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => {
         controller(id);
-      });;
+      });
     this.image.x = fromX + x * (this.image.width * this.image.scaleX);
     this.image.y = fromY + y * (this.image.height * this.image.scaleY) - (this.image.height * this.image.scaleY) * ROWS;
     this.#type = type;

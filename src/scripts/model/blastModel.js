@@ -4,8 +4,12 @@ export default class BlastModel {
   
   #columns;
   #rows;
+  score = 0;
+  maxScore = 300;
+  countMove = 0;
+  maxCountMove = 10;
   cells;
-  observer;
+  observers = new Array();
   lastId = 0;
 
   constructor(rows, columns) {
@@ -52,10 +56,16 @@ export default class BlastModel {
   }
 
   subscribe (fn) {
-    this.observer = fn;
+    this.observers.push(fn);
   }
 
   broadcast() {
-    this.observer(this.cells);
+    this.observers.forEach((subscr) => subscr({
+      cells: this.cells,
+      score: this.score,
+      countMove: this.countMove,
+      maxCountMove: this.maxCountMove,
+      maxScore: this.maxScore,
+    }));
   }
 }

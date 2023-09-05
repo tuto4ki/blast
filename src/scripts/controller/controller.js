@@ -1,25 +1,30 @@
 import { COUNT_SHUFFLE } from '../constGame';
 import { getRandom } from '../utils';
+import GameOverController from './gameOverController';
 
 export class Controller {
 
   model;
   countShuffle = COUNT_SHUFFLE;
+  _gameOverController;
 
   constructor(model) {
     this.model = model;
     this.onClick = this.onClick.bind(this);
     this.moveDownCells = this.moveDownCells.bind(this);
     this.checkMove = this.checkMove.bind(this);
+    this._gameOverController = new GameOverController(this.model);
   }
 
   onClick(id) {
     const cell = this.model.cells.flat().find((item) => item && item.id == id);
     if (cell) {
       //remove cells
-      const isRemove = this.getNewFieldsR({x: cell.x, y: cell.y }, cell.numColor);
-      if (isRemove) {
+      const removeCells = this.getNewFieldsR({x: cell.x, y: cell.y }, cell.numColor); // -1 move
+      if (removeCells) {
         this.countShuffle = COUNT_SHUFFLE;
+        // add score
+        this._gameOverController.moveDone(removeCells);
         // move cells
         this.moveDownCells();
         
@@ -29,42 +34,42 @@ export class Controller {
   }
 
   getNewFieldsR(pos, type) {
-    let isRemove = false;
+    let isRemove = 0;
     if (
       (pos.x - 1 >= 0 && this.model.cells[pos.x - 1][pos.y]) &&
       this.model.cells[pos.x - 1][pos.y].numColor == type
     ) {
       this.model.removeCell(pos.x, pos.y);
-      this.getNewFieldsR({x: pos.x - 1, y: pos.y}, type);
+      isRemove += this.getNewFieldsR({x: pos.x - 1, y: pos.y}, type);
       this.model.removeCell(pos.x - 1, pos.y);
-      isRemove = true;
+      isRemove++;
     }
     if (
       (pos.x + 1 < this.model.cells.length && this.model.cells[pos.x + 1][pos.y]) &&
       this.model.cells[pos.x + 1][pos.y].numColor == type
     ) {
       this.model.removeCell(pos.x, pos.y);
-      this.getNewFieldsR({x: pos.x + 1, y: pos.y}, type);
+      isRemove += this.getNewFieldsR({x: pos.x + 1, y: pos.y}, type);
       this.model.removeCell(pos.x + 1, pos.y);
-      isRemove = true;
+      isRemove++;
     }
     if (
       (pos.y - 1 >= 0 && this.model.cells[pos.x][pos.y - 1]) &&
       this.model.cells[pos.x][pos.y - 1].numColor == type
     ) {
       this.model.removeCell(pos.x, pos.y);
-      this.getNewFieldsR({x: pos.x, y: pos.y - 1}, type);
+      isRemove += this.getNewFieldsR({x: pos.x, y: pos.y - 1}, type);
       this.model.removeCell(pos.x, pos.y - 1);
-      isRemove = true;
+      isRemove++;
     }
     if (
       (pos.y + 1 < this.model.cells[pos.x].length && this.model.cells[pos.x][pos.y + 1]) &&
       this.model.cells[pos.x][pos.y + 1].numColor == type
     ) {
       this.model.removeCell(pos.x, pos.y);
-      this.getNewFieldsR({x: pos.x, y: pos.y + 1}, type);
+      isRemove += this.getNewFieldsR({x: pos.x, y: pos.y + 1}, type);
       this.model.removeCell(pos.x, pos.y + 1);
-      isRemove = true;
+      isRemove++;
     }
     return isRemove;
   }

@@ -12,12 +12,41 @@ export const BUTTON_STYLE = {
   fontFamily: 'marvinFont',
   fontSize: '30px',
   color: '#fff',
+  align: 'center',
+};
+
+export const SCORE_STYLE = {
+  fontFamily: 'marvinFont',
+  fontSize: '35px',
+  color: '#fff',
+  align: 'center',
+};
+
+export const SCORE_TITLE_STYLE = {
+  fontFamily: 'marvinFont',
+  fontSize: '20px',
+  color: '#fff',
+  align: 'center',
+};
+
+export const MOVE_STYLE = {
+  fontFamily: 'marvinFont',
+  fontSize: '58px',
+  color: '#fff',
+  align: 'center',
+};
+
+export const PROGRESS_TITLE_STYLE = {
+  fontFamily: 'marvinFont',
+  fontSize: '17px',
+  color: '#fff',
+  align: 'center',
 };
 
 export const NUM_COLOR = 5;
 
-export const ROWS = 5;
-export const COLUMNS = 4;
+export const ROWS = 9;
+export const COLUMNS = 9;
 
 /**
  * 0 blue

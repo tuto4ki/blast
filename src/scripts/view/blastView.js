@@ -32,7 +32,12 @@ export class BlastView extends Phaser.GameObjects.Container {
     this.controller = controller;
   }
 
-  updateField(cells) {
+  updateField(data) {
+
+    const cells = data.cells;
+    if (!cells) {
+      return;
+    }
 
     this.isTween = true;
 
