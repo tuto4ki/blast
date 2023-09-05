@@ -21,6 +21,12 @@ export default class StartScene extends Phaser.Scene {
         +this.game.config.height / 2, 
         'scoreButton',
         'ИГРАТЬ'
-    ).onClick(SCENE_START, SCENE_GAME);
+    ).onClick(() => {
+      this.scene.pause();
+    
+      this.scene.start(SCENE_GAME, {
+        scene: SCENE_START,
+      });
+    });
   }
 }

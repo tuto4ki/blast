@@ -79,13 +79,12 @@ export class BlastView extends Phaser.GameObjects.Container {
     if (this.isTween) {
       const countTween = this.scene.tweens.getTweens().length;
       if (!countTween) {
-        console.log(this._isGameOver, this._isWin);
+
         if (this._isGameOver) {
           this.scene.scene.pause();
           this.scene.scene.run(SCENE_GAME_OVER, {
             scene: SCENE_GAME,
             isWin: this._isWin,
-            scene: this.scene,
           });
         }
 

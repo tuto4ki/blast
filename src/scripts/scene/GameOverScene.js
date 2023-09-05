@@ -1,15 +1,14 @@
 import { Button } from '../button';
 import {
   SCALE_GAME,
-  SCENE_GAME,
   SCENE_GAME_OVER,
   BUTTON_STYLE,
   COLOR_BACKGROUND,
+  SCENE_GAME,
 } from '../constGame';
 
 export default class GameOverScene extends Phaser.Scene {
 
-  _sceneGame;
   _isWin;
 
   constructor() {
@@ -18,7 +17,6 @@ export default class GameOverScene extends Phaser.Scene {
 
   init(data) {
     this._isWin = data.isWin;
-    this._sceneGame = data.sceneGame;
   }
 
   create() {
@@ -53,6 +51,11 @@ export default class GameOverScene extends Phaser.Scene {
       heightPart + 200 * SCALE_GAME, 
       'scoreButton',
       'ИГРАТЬ'
-    ).onClick(SCENE_GAME_OVER, SCENE_GAME, this.sceneGame);
+    ).onClick(() => {
+      this.scene.pause();
+      this.scene.start(SCENE_GAME, {
+        scene: SCENE_GAME_OVER,
+      });
+    });
   }
 }

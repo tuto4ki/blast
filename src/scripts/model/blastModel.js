@@ -7,7 +7,7 @@ export default class BlastModel {
   score = 0;
   maxScore = 300;
   countMove = 0;
-  maxCountMove = 30;
+  maxCountMove = 25;
   cells;
   observers = new Array();
   lastId = 0;
