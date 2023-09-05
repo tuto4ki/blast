@@ -7,10 +7,12 @@ export default class BlastModel {
   score = 0;
   maxScore = 300;
   countMove = 0;
-  maxCountMove = 10;
+  maxCountMove = 30;
   cells;
   observers = new Array();
   lastId = 0;
+  isGameOver = false;
+  isWin = false;
 
   constructor(rows, columns) {
     this.#rows = rows;
@@ -66,6 +68,8 @@ export default class BlastModel {
       countMove: this.countMove,
       maxCountMove: this.maxCountMove,
       maxScore: this.maxScore,
+      isGameOver: this.isGameOver,
+      isWin: this.isWin,
     }));
   }
 }

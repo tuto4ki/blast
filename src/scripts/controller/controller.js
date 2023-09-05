@@ -27,6 +27,8 @@ export class Controller {
         this._gameOverController.moveDone(removeCells);
         // move cells
         this.moveDownCells();
+
+        this._gameOverController.checkGameOver();
         
         this.model.broadcast();
       }

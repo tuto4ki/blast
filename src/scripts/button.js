@@ -1,4 +1,4 @@
-import { BUTTON_STYLE } from './constGame';
+import { BUTTON_STYLE, SCALE_GAME } from './constGame';
 
 export class Button extends Phaser.GameObjects.Container {
 
@@ -9,20 +9,25 @@ export class Button extends Phaser.GameObjects.Container {
     super(scene, posX, posY);
     this.#button = scene.add
       .image(posX, posY, bg)
-      .setScale(0.5)
+      .setScale(SCALE_GAME)
       .setInteractive({ useHandCursor: true });
     
     this.#text = scene.add
       .text(posX, posY, label, BUTTON_STYLE)
+      .setScale(SCALE_GAME)
       .setOrigin(0.5, 0.5);
   }
 
-  onClick(fromScene, toScene) {
+  onClick(fromScene, toScene, scene = null) {
     this.#button.on('pointerdown', () => {
       this.scene.scene.pause();
-      this.scene.scene.start(toScene, {
-        scene: fromScene,
-      });
+      if (scene) {
+        scene.restart();
+      } else {
+        this.scene.scene.start(toScene, {
+          scene: fromScene,
+        });
+      }
     });
   }
 }

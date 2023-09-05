@@ -11,9 +11,14 @@ export default class GameOverController {
     this.model.score += countCells * (countCells + 1);
   }
 
-  isGameOver() {
-    if (this.model.countMove == this.model.maxCountMove) {
-      return true;
+  checkGameOver() {
+
+    if (this.model.score >= this.model.maxScore) {
+      this.model.isWin = true;
+      this.model.isGameOver = true;
+    }
+    else if (this.model.countMove == this.model.maxCountMove) {
+      this.model.isGameOver = true;
     }
   }
 }

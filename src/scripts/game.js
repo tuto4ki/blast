@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 
 import { COLOR_BACKGROUND, HEIGHT_GAME, WIDTH_GAME } from './constGame';
-import { PreloadScene } from './scene/PreloadScene';
-import { StartScene } from './scene/StartScene';
-import { GameScene } from './scene/GameScene';
+import PreloadScene from './scene/PreloadScene';
+import StartScene from './scene/StartScene';
+import GameScene from './scene/GameScene';
+import GameOverScene from './scene/GameOverScene';
 
 export class Game {
   constructor() {
@@ -17,7 +18,7 @@ export class Game {
         target: 60,
         forceSetTimeOut: false,
       },
-      scene: [PreloadScene, StartScene, GameScene],
+      scene: [PreloadScene, StartScene, GameScene, GameOverScene],
     });
   }
 }

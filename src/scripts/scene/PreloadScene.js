@@ -7,7 +7,7 @@ import {
 } from '../constGame';
 import * as preload from '../constPreload';
 
-export class PreloadScene extends Phaser.Scene {
+export default class PreloadScene extends Phaser.Scene {
   constructor() {
     super(SCENE_PRELOAD);
   }
@@ -45,7 +45,6 @@ export class PreloadScene extends Phaser.Scene {
     this.load.image('ellipse', './images/ellipse.png');
     this.load.image('field', './images/field.png');
     this.load.image('green', './images/green.png');
-    this.load.image('greenProgressBar', './images/greenProgressBar.png');
     this.load.image('greenPBLeft', './images/greenPBLeft.png');
     this.load.image('greenPBCenter', './images/greenPBCenter.png');
     this.load.image('greenPBRight', './images/greenPBRight.png');

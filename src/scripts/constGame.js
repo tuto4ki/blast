@@ -1,16 +1,18 @@
 export const SCENE_PRELOAD = 'PreloadScene';
 export const SCENE_START = 'StartScene';
 export const SCENE_GAME = 'GameScene';
+export const SCENE_GAME_OVER = 'GameOver';
 
 export const SCALE_GAME = 0.25;
 export const WIDTH_GAME = 3508 * SCALE_GAME;
 export const HEIGHT_GAME = 2480 * SCALE_GAME;
 
-export const COLOR_BACKGROUND = '#A3A3A3';
+export const GAME_BACKGROUND = '#A3A3A3';
+export const COLOR_BACKGROUND = '#0D233D';
 
 export const BUTTON_STYLE = {
   fontFamily: 'marvinFont',
-  fontSize: '30px',
+  fontSize: '70px',
   color: '#fff',
   align: 'center',
 };

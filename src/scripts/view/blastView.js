@@ -1,5 +1,5 @@
 import Tail from './tail';
-import { SCALE_GAME } from '../constGame';
+import { SCALE_GAME, SCENE_GAME, SCENE_GAME_OVER } from '../constGame';
 
 const PADDING = {
   x: 136 * SCALE_GAME,
@@ -15,6 +15,8 @@ export class BlastView extends Phaser.GameObjects.Container {
   fromX;
   fromY;
   isTween = false;
+  _isGameOver = false;
+  _isWin = false;
 
   constructor(scene, x, y, controller) {
     super(scene, x, y)
@@ -34,7 +36,11 @@ export class BlastView extends Phaser.GameObjects.Container {
 
   updateField(data) {
 
-    const cells = data.cells;
+    const { cells, isGameOver, isWin } = data;
+
+    this._isGameOver = isGameOver;
+    this._isWin = isWin;
+
     if (!cells) {
       return;
     }
@@ -73,6 +79,16 @@ export class BlastView extends Phaser.GameObjects.Container {
     if (this.isTween) {
       const countTween = this.scene.tweens.getTweens().length;
       if (!countTween) {
+        console.log(this._isGameOver, this._isWin);
+        if (this._isGameOver) {
+          this.scene.scene.pause();
+          this.scene.scene.run(SCENE_GAME_OVER, {
+            scene: SCENE_GAME,
+            isWin: this._isWin,
+            scene: this.scene,
+          });
+        }
+
         this.isTween = false;
         // check move exists
         this.controller.checkMove();

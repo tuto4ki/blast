@@ -24,34 +24,40 @@ export default class ProgressView extends Phaser.GameObjects.Container {
     this.scene.add
       .image(932 * SCALE_GAME, -80 * SCALE_GAME, 'progressBarBg')
       .setScale(SCALE_GAME)
-      .setOrigin(0);
+      .setOrigin(0)
+      .setDepth(1);
     
     const picture = this.scene.add
       .image(965 * SCALE_GAME, 110 * SCALE_GAME, 'darkBlueProgressBar')
       .setScale(SCALE_GAME)
-      .setOrigin(0);
+      .setOrigin(0)
+      .setDepth(1);
 
     this._imageLeftPB = this.scene.add
       .image(971 * SCALE_GAME, 116 * SCALE_GAME, 'greenPBLeft')
       .setScale(SCALE_GAME)
-      .setOrigin(0);
+      .setOrigin(0)
+      .setDepth(1);
     
     this._startRightPB = (971 + this._imageLeftPB.width) * SCALE_GAME;
 
     this._imageCenterPB = this.scene.add
       .image(this._startRightPB, 116 * SCALE_GAME, 'greenPBCenter')
       .setScale(SCALE_GAME)
-      .setOrigin(0);
+      .setOrigin(0)
+      .setDepth(1);
     this._imageRightPB = this.scene.add
       .image(this._startRightPB, 116 * SCALE_GAME, 'greenPBRight')
       .setScale(SCALE_GAME)
-      .setOrigin(0);
+      .setOrigin(0)
+      .setDepth(1);
 
     this._maxWidthPB = (picture.width - this._imageLeftPB.width - this._imageRightPB.width) * SCALE_GAME;
 
     this.scene.add
       .text(1435 * SCALE_GAME, 8 * SCALE_GAME, 'ПРОГРЕСС', PROGRESS_TITLE_STYLE)
-      .setOrigin(0);
+      .setOrigin(0)
+      .setDepth(1);
     
     this.scene.add
       .image(x, y, 'progressGameBg')
@@ -90,7 +96,8 @@ export default class ProgressView extends Phaser.GameObjects.Container {
     this._textScore.text = score;
     this._textMove.text = maxCountMove - countMove;
 
-    const width = (score * this._maxWidthPB) / maxScore;
+    let width = (score * this._maxWidthPB) / maxScore;
+    width = Math.min(width, this._maxWidthPB);
 
     this.scene.tweens.add({
       targets: this._imageCenterPB,

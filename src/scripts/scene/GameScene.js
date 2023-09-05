@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
-import { SCENE_GAME, COLUMNS, ROWS } from '../constGame';
+import { SCENE_GAME, COLUMNS, ROWS, GAME_BACKGROUND } from '../constGame';
 import { BlastView } from '../view/blastView';
 import BlastModel from '../model/blastModel';
 import { Controller } from '../controller/controller';
 import ProgressView from '../view/progressView';
 
-export class GameScene extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
   _model;
   _viewField;
   _viewProgress;
@@ -13,12 +13,14 @@ export class GameScene extends Phaser.Scene {
 
   constructor() {
     super(SCENE_GAME);
-
-    this._model = new BlastModel(ROWS, COLUMNS);
-    this._controller = new Controller(this._model);
   }
 
   create() {
+    this.cameras.main.setBackgroundColor(GAME_BACKGROUND);
+
+    this._model = new BlastModel(ROWS, COLUMNS);
+    this._controller = new Controller(this._model);
+
     this._viewField = new BlastView(
       this,
       235,
