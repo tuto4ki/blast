@@ -8,7 +8,7 @@ export default class GameOverController {
 
   moveDone(countCells) {
     this.model.countMove++;
-    this.model.score += countCells * (countCells + 1);
+    this.model.score += countCells * (countCells - 1);
   }
 
   checkGameOver() {

@@ -1,4 +1,4 @@
-import { SCALE_GAME, TAIL_PIC, ROWS } from '../constGame';
+import { SCALE_GAME, TAIL_PIC, ROWS, NUM_COLOR } from '../constGame';
 
 export default class Tail {
 
@@ -24,11 +24,17 @@ export default class Tail {
     this.x = x;
     this.y = y;
 
-    scene.tweens.add({
-      targets: this.image,
-      y: fromY + y * (this.image.height * this.image.scaleY),
-      duration: 500,
-    });
+    if (type < NUM_COLOR) {
+      this.image.y = fromY + y * (this.image.height * this.image.scaleY) - (this.image.height * this.image.scaleY) * ROWS;
+      scene.tweens.add({
+        targets: this.image,
+        y: fromY + y * (this.image.height * this.image.scaleY),
+        duration: 500,
+      });
+    } else {
+      this.image.y = fromY + y * (this.image.height * this.image.scaleY);
+    }
+    
 
   }
 

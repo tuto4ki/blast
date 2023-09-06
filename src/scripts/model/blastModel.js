@@ -36,8 +36,8 @@ export default class BlastModel {
     this.cells[i][j] = null;
   }
 
-  addCell(i, j) {
-    this.cells[i][j] = new Cell(i, j, this.lastId++);
+  addCell(i, j, type) {
+    this.cells[i][j] = new Cell(i, j, this.lastId++, type);
   }
 
   moveDownCell(i, j, iNew, jNew) {

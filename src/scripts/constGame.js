@@ -57,6 +57,9 @@ export const COLUMNS = 9;
  * 3 red
  * 4 yellow
  */
-export const TAIL_PIC = ['blue', 'green', 'purple', 'red', 'yellow'];
+export const TAIL_PIC = ['blue', 'green', 'purple', 'red', 'yellow', 'bomb', 'rocket', 'rocketHoriz'];
 
 export const COUNT_SHUFFLE = 4;
+
+export const COUNT_ROCKET = 4;
+export const COUNT_BOMB = 6;

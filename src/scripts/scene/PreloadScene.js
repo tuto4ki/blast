@@ -39,6 +39,7 @@ export default class PreloadScene extends Phaser.Scene {
     });
 
     this.load.image('blue', './images/blue.png');
+    this.load.image('bomb', './images/bomb.png');
     this.load.image('bonusBg', './images/bonusBg.png');
     this.load.image('button', './images/button.png');
     this.load.image('darkBlueProgressBar', './images/darkBlueProgressBar.png');
@@ -55,6 +56,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('progressGameBg', './images/progressGameBg.png');
     this.load.image('purple', './images/purple.png');
     this.load.image('red', './images/red.png');
+    this.load.image('rocket', './images/rocket.png');
+    this.load.image('rocketHoriz', './images/rocketHoriz.png');
     this.load.image('scoreBg', './images/scoreBg.png');
     this.load.image('scoreButton', './images/scoreButton.png');
     this.load.image('yellow', './images/yellow.png');

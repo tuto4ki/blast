@@ -38,13 +38,12 @@ export class BlastView extends Phaser.GameObjects.Container {
 
     const { cells, isGameOver, isWin } = data;
 
-    this._isGameOver = isGameOver;
-    this._isWin = isWin;
-
     if (!cells) {
       return;
     }
 
+    this._isGameOver = isGameOver;
+    this._isWin = isWin;
     this.isTween = true;
 
     const cellsFlat = cells.flat();
@@ -73,6 +72,10 @@ export class BlastView extends Phaser.GameObjects.Container {
         }
       }
     }
+  }
+
+  removeTails() {
+
   }
 
   update() {

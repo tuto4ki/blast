@@ -7,10 +7,14 @@ export class Cell {
   numColor;
   id;
 
-  constructor(x, y, id) {
+  constructor(x, y, id, type) {
     this.x = x;
     this.y = y;
-    this.numColor = this.setRandomColor();
+    if (type) {
+      this.numColor = type;
+    } else {
+      this.numColor = this.setRandomColor();
+    }
     this.id = id;
   }
 
