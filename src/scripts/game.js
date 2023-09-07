@@ -4,11 +4,7 @@ import PreloadScene from './scene/PreloadScene';
 import StartScene from './scene/StartScene';
 import GameScene from './scene/GameScene';
 import GameOverScene from './scene/GameOverScene';
-import {
-  COLOR_BACKGROUND,
-  HEIGHT_GAME,
-  WIDTH_GAME,
-} from './constStype';
+import { COLOR_BACKGROUND, HEIGHT_GAME, WIDTH_GAME } from './constStype';
 
 export class Game {
   constructor() {

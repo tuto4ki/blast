@@ -1,13 +1,7 @@
 import Phaser from 'phaser';
 
-import {
-  WIDTH_GAME,
-  HEIGHT_GAME,
-} from '../constStype';
-import {
-  SCENE_PRELOAD,
-  SCENE_START,
-} from '../constGame';
+import { WIDTH_GAME, HEIGHT_GAME } from '../constStype';
+import { SCENE_PRELOAD, SCENE_START } from '../constGame';
 import * as preload from './constPreload';
 
 export default class PreloadScene extends Phaser.Scene {
@@ -68,16 +62,18 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('scoreButton', './images/scoreButton.png');
     this.load.image('yellow', './images/yellow.png');
     this.load.image('yellowButton', './images/yellowButton.png');
-    loadFont("marvinFont", './fonts/marvin-round.otf');
+    loadFont('marvinFont', './fonts/marvin-round.otf');
   }
-
 }
 
 function loadFont(name, url) {
   const newFont = new FontFace(name, `url(${url})`);
-  newFont.load().then(function (loaded) {
+  newFont
+    .load()
+    .then(function (loaded) {
       document.fonts.add(loaded);
-  }).catch(function (error) {
+    })
+    .catch(function (error) {
       return error;
-  });
+    });
 }

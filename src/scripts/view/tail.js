@@ -1,22 +1,15 @@
-import {
-  TAIL_PIC,
-  ROWS,
-  NUM_COLOR,
-} from '../constGame';
-import {
-  SCALE_GAME,
-} from '../constStype';
+import { TAIL_PIC, ROWS, NUM_COLOR } from '../constGame';
+import { SCALE_GAME } from '../constStype';
 
 export default class Tail {
-
-  image;
-  #type;
+  _image;
+  _type;
   id;
   x;
-  y
+  y;
 
   constructor(scene, fromX, fromY, x, y, type, id, controller) {
-    this.image = scene.add
+    this._image = scene.add
       .image(0, 0, TAIL_PIC[type])
       .setScale(SCALE_GAME)
       .setOrigin(0.5)
@@ -24,32 +17,33 @@ export default class Tail {
       .on('pointerdown', () => {
         controller(id);
       });
-    this.image.x = fromX + x * (this.image.width * this.image.scaleX);
-    this.image.y = fromY + y * (this.image.height * this.image.scaleY) - (this.image.height * this.image.scaleY) * ROWS;
-    this.#type = type;
+    this._image.x = fromX + x * (this._image.width * this._image.scaleX);
+    this._image.y =
+      fromY + y * (this._image.height * this._image.scaleY) - this._image.height * this._image.scaleY * ROWS;
+    this._type = type;
     this.id = id;
     this.x = x;
     this.y = y;
 
     if (type < NUM_COLOR) {
-      this.image.y = fromY + y * (this.image.height * this.image.scaleY) - (this.image.height * this.image.scaleY) * ROWS;
+      this._image.y =
+        fromY + y * (this._image.height * this._image.scaleY) - this._image.height * this._image.scaleY * ROWS;
       scene.tweens.add({
-        targets: this.image,
-        y: fromY + y * (this.image.height * this.image.scaleY),
+        targets: this._image,
+        y: fromY + y * (this._image.height * this._image.scaleY),
         duration: 500,
       });
     } else {
-      this.image.y = fromY + y * (this.image.height * this.image.scaleY);
+      this._image.y = fromY + y * (this._image.height * this._image.scaleY);
     }
-    
   }
 
   tweenTail(scene, fromY, y, fromX, x) {
     this.y = y;
     scene.tweens.add({
-      targets: this.image,
-      y: fromY + y * (this.image.height * this.image.scaleY),
-      x: fromX + x * (this.image.width * this.image.scaleX),
+      targets: this._image,
+      y: fromY + y * (this._image.height * this._image.scaleY),
+      x: fromX + x * (this._image.width * this._image.scaleX),
       duration: 500,
       ease: 'Power1',
     });
@@ -57,14 +51,13 @@ export default class Tail {
 
   removeTail(scene, callback) {
     scene.tweens.add({
-      targets: this.image,
+      targets: this._image,
       scale: 0.1,
       duration: 200,
       onComplete: () => {
-        this.image.destroy();
+        this._image.destroy();
         callback();
-    },
+      },
     });
-    
   }
 }

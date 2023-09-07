@@ -1,11 +1,7 @@
 import { getRandom } from '../utils';
-import {
-  SUPER_TAIL_COUNT,
-  NUM_COLOR,
-} from '../constGame';
+import { SUPER_TAIL_COUNT, NUM_COLOR } from '../constGame';
 
 export default class SuperTailController {
-
   _model;
 
   constructor(model) {
@@ -15,15 +11,14 @@ export default class SuperTailController {
   setSuperCell(x, y, count) {
     if (count >= SUPER_TAIL_COUNT.bomb) {
       this._model.addCell(x, y, 5);
-    }
-    else if (count >= SUPER_TAIL_COUNT.rocket) {
+    } else if (count >= SUPER_TAIL_COUNT.rocket) {
       this._model.addCell(x, y, getRandom(6, 7));
     }
   }
 
   removeSuperCell(x, y) {
     let removeCells = 0;
-    switch(this._model.cells[x][y].numColor) {
+    switch (this._model.cells[x][y].numColor) {
       case 5:
         removeCells = this.removeCellsBomb(x, y);
         break;

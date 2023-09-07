@@ -1,7 +1,6 @@
 import { NUM_COLOR } from '../constGame';
 
 export class Cell {
-
   x;
   y;
   numColor;

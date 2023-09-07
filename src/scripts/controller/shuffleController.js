@@ -1,11 +1,7 @@
 import { getRandom } from '../utils';
-import {
-  COUNT_SHUFFLE,
-  NUM_COLOR,
-} from '../constGame';
+import { COUNT_SHUFFLE, NUM_COLOR } from '../constGame';
 
 export default class ShuffleController {
-
   _model;
   _countShuffle = COUNT_SHUFFLE;
 
@@ -31,25 +27,19 @@ export default class ShuffleController {
   }
 
   isMoveExists() {
-    
     for (let i = 0; i < this._model.cells.length; i++) {
       for (let j = 0; j < this._model.cells[i].length; j++) {
         if (this._model.cells[i][j].numColor >= NUM_COLOR) {
           return true;
         }
-        if ((
-          i - 1 >= 0 &&
-          this._model.cells[i][j].numColor == this._model.cells[i - 1][j].numColor
-        ) || (
-          i + 1 < this._model.cells.length &&
-          this._model.cells[i][i].numColor == this._model.cells[i + 1][i].numColor
-        ) || (
-          j - 1 >= 0 &&
-          this._model.cells[i][j].numColor == this._model.cells[i][j - 1].numColor
-        ) || (
-          j + 1 < this._model.cells[i].length &&
-          this._model.cells[i][j].numColor == this._model.cells[i][j + 1].numColor
-        )) {
+        if (
+          (i - 1 >= 0 && this._model.cells[i][j].numColor == this._model.cells[i - 1][j].numColor) ||
+          (i + 1 < this._model.cells.length &&
+            this._model.cells[i][i].numColor == this._model.cells[i + 1][i].numColor) ||
+          (j - 1 >= 0 && this._model.cells[i][j].numColor == this._model.cells[i][j - 1].numColor) ||
+          (j + 1 < this._model.cells[i].length &&
+            this._model.cells[i][j].numColor == this._model.cells[i][j + 1].numColor)
+        ) {
           return true;
         }
       }
@@ -64,8 +54,7 @@ export default class ShuffleController {
       for (let j = 0; j < this._model.cells[i].length; j++) {
         const xMove = getRandom(0, maxX);
         const yMove = getRandom(0, maxY);
-        if (i != xMove && j != yMove)
-          this._model.swapCell({x: i,  y: j }, { x: xMove, y: yMove });
+        if (i != xMove && j != yMove) this._model.swapCell({ x: i, y: j }, { x: xMove, y: yMove });
       }
     }
   }

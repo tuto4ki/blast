@@ -1,10 +1,6 @@
 import Phaser from 'phaser';
 import { GAME_BACKGROUND } from '../constStype';
-import {
-  SCENE_GAME,
-  COLUMNS,
-  ROWS,
-} from '../constGame';
+import { SCENE_GAME, COLUMNS, ROWS } from '../constGame';
 import { BlastView } from '../view/blastView';
 import BlastModel from '../model/blastModel';
 import { Controller } from '../controller/controller';
@@ -26,19 +22,12 @@ export default class GameScene extends Phaser.Scene {
     this._model = new BlastModel(ROWS, COLUMNS);
     this._controller = new Controller(this._model);
 
-    this._viewField = new BlastView(
-      this,
-      235,
-      335, {
-        onClick: this._controller.onClick,
-        checkMove: this._controller.checkMove,
+    this._viewField = new BlastView(this, 235, 335, {
+      onClick: this._controller.onClick,
+      checkMove: this._controller.checkMove,
     });
 
-    this._viewProgress = new ProgressView(
-      this,
-      685,
-      265,
-    );
+    this._viewProgress = new ProgressView(this, 685, 265);
 
     this._model.subscribe(this._viewField.updateField);
     this._model.subscribe(this._viewProgress.updateProgress);

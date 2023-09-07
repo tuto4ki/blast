@@ -8,6 +8,9 @@ export const NUM_COLOR = 5;
 export const ROWS = 9;
 export const COLUMNS = 9;
 
+export const MAX_SCORE = 500;
+export const MAX_COUNT_MOVE = 25;
+
 /**
  * 0 blue
  * 1 green

@@ -1,13 +1,8 @@
-import {
-  SCORE_STYLE,
-  SCORE_TITLE_STYLE,
-  MOVE_STYLE,
-  SCALE_GAME,
-  PROGRESS_TITLE_STYLE
-} from '../constStype';
+import Phaser from 'phaser';
+
+import { SCORE_STYLE, SCORE_TITLE_STYLE, MOVE_STYLE, SCALE_GAME, PROGRESS_TITLE_STYLE } from '../constStype';
 
 export default class ProgressView extends Phaser.GameObjects.Container {
-
   scene;
   _textScore;
   _textMove;
@@ -18,7 +13,7 @@ export default class ProgressView extends Phaser.GameObjects.Container {
   _imageCenterPB;
 
   constructor(scene, x, y) {
-    super(scene, x, y)
+    super(scene, x, y);
     this.scene = scene;
 
     this.scene.add
@@ -26,7 +21,7 @@ export default class ProgressView extends Phaser.GameObjects.Container {
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
-    
+
     const picture = this.scene.add
       .image(965 * SCALE_GAME, 110 * SCALE_GAME, 'darkBlueProgressBar')
       .setScale(SCALE_GAME)
@@ -38,7 +33,7 @@ export default class ProgressView extends Phaser.GameObjects.Container {
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
-    
+
     this._startRightPB = (971 + this._imageLeftPB.width) * SCALE_GAME;
 
     this._imageCenterPB = this.scene.add
@@ -58,39 +53,29 @@ export default class ProgressView extends Phaser.GameObjects.Container {
       .text(1435 * SCALE_GAME, 8 * SCALE_GAME, 'ПРОГРЕСС', PROGRESS_TITLE_STYLE)
       .setOrigin(0)
       .setDepth(1);
-    
-    this.scene.add
-      .image(x, y, 'progressGameBg')
-      .setScale(SCALE_GAME)
-      .setOrigin(0.5);
-    
+
+    this.scene.add.image(x, y, 'progressGameBg').setScale(SCALE_GAME).setOrigin(0.5);
+
     this.scene.add
       .image(x, y - 49, 'moves')
       .setScale(SCALE_GAME)
       .setOrigin(0.5);
-    
+
     this.scene.add
       .image(x, y + 66, 'scoreBg')
       .setScale(SCALE_GAME)
       .setOrigin(0.5);
 
-    this._textMove = this.scene.add
-      .text(x + 5, y - 55, '37', MOVE_STYLE)
-      .setOrigin(0.5, 0.5);
-    
-    this.scene.add
-      .text(x, y + 45, 'очки:', SCORE_TITLE_STYLE)
-      .setOrigin(0.5, 0.5);
+    this._textMove = this.scene.add.text(x + 5, y - 55, '37', MOVE_STYLE).setOrigin(0.5, 0.5);
 
-    this._textScore = this.scene.add
-      .text(x, y + 77, '221', SCORE_STYLE)
-      .setOrigin(0.5, 0.5);
-    
+    this.scene.add.text(x, y + 45, 'очки:', SCORE_TITLE_STYLE).setOrigin(0.5, 0.5);
+
+    this._textScore = this.scene.add.text(x, y + 77, '221', SCORE_STYLE).setOrigin(0.5, 0.5);
+
     this.updateProgress = this.updateProgress.bind(this);
   }
 
   updateProgress(data) {
-
     const { score, countMove, maxCountMove, maxScore } = data;
 
     this._textScore.text = score;
@@ -105,8 +90,8 @@ export default class ProgressView extends Phaser.GameObjects.Container {
       duration: 500,
       ease: 'Power1',
       onUpdate: (tween) => {
-        this._imageRightPB.x = this._startRightPB + (tween.getValue() * this._imageCenterPB.width);
-      }
+        this._imageRightPB.x = this._startRightPB + tween.getValue() * this._imageCenterPB.width;
+      },
     });
   }
 }
