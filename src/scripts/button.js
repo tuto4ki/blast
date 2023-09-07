@@ -1,4 +1,7 @@
-import { BUTTON_STYLE, SCALE_GAME } from './constGame';
+import {
+  BUTTON_STYLE,
+  SCALE_GAME,
+} from './constStype';
 
 export class Button extends Phaser.GameObjects.Container {
 

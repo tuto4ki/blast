@@ -1,5 +1,10 @@
 import Phaser from 'phaser';
-import { SCENE_GAME, COLUMNS, ROWS, GAME_BACKGROUND } from '../constGame';
+import { GAME_BACKGROUND } from '../constStype';
+import {
+  SCENE_GAME,
+  COLUMNS,
+  ROWS,
+} from '../constGame';
 import { BlastView } from '../view/blastView';
 import BlastModel from '../model/blastModel';
 import { Controller } from '../controller/controller';

@@ -1,11 +1,14 @@
 import Phaser from 'phaser';
+
 import {
+  WIDTH_GAME,
   HEIGHT_GAME,
+} from '../constStype';
+import {
   SCENE_PRELOAD,
   SCENE_START,
-  WIDTH_GAME,
 } from '../constGame';
-import * as preload from '../constPreload';
+import * as preload from './constPreload';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {

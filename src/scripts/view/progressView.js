@@ -4,7 +4,7 @@ import {
   MOVE_STYLE,
   SCALE_GAME,
   PROGRESS_TITLE_STYLE
-} from '../constGame';
+} from '../constStype';
 
 export default class ProgressView extends Phaser.GameObjects.Container {
 

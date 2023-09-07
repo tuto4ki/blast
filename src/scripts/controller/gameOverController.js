@@ -1,24 +1,29 @@
 export default class GameOverController {
 
-  model;
+  _model;
 
   constructor(model) {
-   this.model = model
+   this._model = model
   }
 
   moveDone(countCells) {
-    this.model.countMove++;
-    this.model.score += countCells * (countCells - 1);
+    this._model.countMove++;
+    this._model.score += countCells * (countCells - 1);
   }
 
   checkGameOver() {
 
-    if (this.model.score >= this.model.maxScore) {
-      this.model.isWin = true;
-      this.model.isGameOver = true;
+    if (this._model.score >= this._model.maxScore) {
+      this._model.isWin = true;
+      this._model.isGameOver = true;
     }
-    else if (this.model.countMove == this.model.maxCountMove) {
-      this.model.isGameOver = true;
+    else if (this._model.countMove == this._model.maxCountMove) {
+      this._model.isGameOver = true;
     }
+  }
+
+  gameOverFailed() {
+    this._model.isWin = false;
+    this._model.isGameOver = true;
   }
 }

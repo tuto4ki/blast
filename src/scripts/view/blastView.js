@@ -1,7 +1,15 @@
 import Tail from './tail';
-import { COLUMNS, ROWS, SCALE_GAME, SCENE_GAME, SCENE_GAME_OVER } from '../constGame';
-import { PADDING } from './constView';
 import { resizePicture } from '../utils';
+import {
+  PADDING,
+  SCALE_GAME,
+} from '../constStype';
+import {
+  COLUMNS,
+  ROWS,
+  SCENE_GAME,
+  SCENE_GAME_OVER,
+} from '../constGame';
 
 export class BlastView extends Phaser.GameObjects.Container {
 

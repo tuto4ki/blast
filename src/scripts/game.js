@@ -1,10 +1,14 @@
 import Phaser from 'phaser';
 
-import { COLOR_BACKGROUND, HEIGHT_GAME, WIDTH_GAME } from './constGame';
 import PreloadScene from './scene/PreloadScene';
 import StartScene from './scene/StartScene';
 import GameScene from './scene/GameScene';
 import GameOverScene from './scene/GameOverScene';
+import {
+  COLOR_BACKGROUND,
+  HEIGHT_GAME,
+  WIDTH_GAME,
+} from './constStype';
 
 export class Game {
   constructor() {

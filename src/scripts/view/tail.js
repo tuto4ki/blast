@@ -1,4 +1,11 @@
-import { SCALE_GAME, TAIL_PIC, ROWS, NUM_COLOR } from '../constGame';
+import {
+  TAIL_PIC,
+  ROWS,
+  NUM_COLOR,
+} from '../constGame';
+import {
+  SCALE_GAME,
+} from '../constStype';
 
 export default class Tail {
 

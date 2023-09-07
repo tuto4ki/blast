@@ -1,9 +1,11 @@
 import { Button } from '../button';
 import {
-  SCALE_GAME,
-  SCENE_GAME_OVER,
-  BUTTON_STYLE,
   COLOR_BACKGROUND,
+  BUTTON_STYLE,
+  SCALE_GAME,
+} from '../constStype';
+import {
+  SCENE_GAME_OVER,
   SCENE_GAME,
 } from '../constGame';
 
