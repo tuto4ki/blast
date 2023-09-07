@@ -1,10 +1,7 @@
 import Tail from './tail';
-import { SCALE_GAME, SCENE_GAME, SCENE_GAME_OVER } from '../constGame';
-
-const PADDING = {
-  x: 136 * SCALE_GAME,
-  y: 140 * SCALE_GAME,
-};
+import { COLUMNS, ROWS, SCALE_GAME, SCENE_GAME, SCENE_GAME_OVER } from '../constGame';
+import { PADDING } from './constView';
+import { resizePicture } from '../utils';
 
 export class BlastView extends Phaser.GameObjects.Container {
 
@@ -21,17 +18,23 @@ export class BlastView extends Phaser.GameObjects.Container {
   constructor(scene, x, y, controller) {
     super(scene, x, y)
     this.scene = scene;
-    this.pictureBg = this.scene.add
-      .image(x, y, 'field')
-      .setScale(SCALE_GAME)
-      .setOrigin(0.5);
+    this.controller = controller;
     this.tails = new Map();
     this.updateField = this.updateField.bind(this);
-    
-    this.fromX = this.x - (+this.pictureBg.width * +this.pictureBg.scaleX) / 2 + PADDING.x;
-    this.fromY = this.y - (+this.pictureBg.height * +this.pictureBg.scaleY) / 2 + PADDING.y;
+  
+    const pictureTail = this.scene.add
+      .image(x, y, 'green')
+      .setVisible(false);
 
-    this.controller = controller;
+    const widthTails = pictureTail.width * COLUMNS;
+    const heightTails = pictureTail.height * ROWS;
+    this.fromX = this.x - SCALE_GAME * (widthTails - pictureTail.width) / 2;
+    this.fromY = this.y - SCALE_GAME * (heightTails - pictureTail.height) / 2;
+    
+    const widthField = widthTails + 2 * PADDING.x;
+    const heightField = heightTails + 2 * PADDING.y;
+
+    resizePicture(this.scene, x, y, SCALE_GAME, heightField, widthField, 'fieldAngle', 'fieldLeft', 'fieldTop', 'fieldCenter');
   }
 
   updateField(data) {

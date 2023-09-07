@@ -44,7 +44,10 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image('button', './images/button.png');
     this.load.image('darkBlueProgressBar', './images/darkBlueProgressBar.png');
     this.load.image('ellipse', './images/ellipse.png');
-    this.load.image('field', './images/field.png');
+    this.load.image('fieldAngle', './images/fieldAngle.png');
+    this.load.image('fieldCenter', './images/fieldCenter.png');
+    this.load.image('fieldLeft', './images/fieldLeft.png');
+    this.load.image('fieldTop', './images/fieldTop.png');
     this.load.image('green', './images/green.png');
     this.load.image('greenPBLeft', './images/greenPBLeft.png');
     this.load.image('greenPBCenter', './images/greenPBCenter.png');

@@ -35,7 +35,6 @@ export default class Tail {
       this.image.y = fromY + y * (this.image.height * this.image.scaleY);
     }
     
-
   }
 
   tweenTail(scene, fromY, y, fromX, x) {
