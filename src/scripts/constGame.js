@@ -18,7 +18,7 @@ export const MAX_COUNT_MOVE = 25;
  * 3 red
  * 4 yellow
  */
-export const TAIL_PIC = ['blue', 'green', 'purple', 'red', 'yellow', 'bomb', 'rocket', 'rocketHoriz'];
+export const TAIL_PIC = ['blue', 'green', 'purple', 'red', 'yellow', 'bomb', 'rocketVertical', 'rocketHorizontal'];
 
 export const COUNT_SHUFFLE = 4;
 

@@ -36,7 +36,7 @@ export class Controller {
         this._superTailController.setSuperCell(x, y, removeCells);
       }
 
-      if (removeCells) {
+      if (removeCells >= 2) {
         this._shuffleController.refresh();
         // add score
         this._gameOverController.moveDone(removeCells);

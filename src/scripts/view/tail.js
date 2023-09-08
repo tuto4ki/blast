@@ -1,9 +1,12 @@
+import Phaser from 'phaser';
+
 import { TAIL_PIC, ROWS, NUM_COLOR } from '../constGame';
-import { SCALE_GAME } from '../constStype';
+import { PARTICLE_BOMB, PARTICLE_HORIZONTAL, PARTICLE_VERTICAL, SCALE_GAME } from '../constStype';
 
 export default class Tail {
   _image;
   _type;
+  _particles;
   id;
   x;
   y;
@@ -49,7 +52,9 @@ export default class Tail {
     });
   }
 
-  removeTail(scene, callback) {
+  removeTail(scene, callback, width, height, fromX, fromY) {
+    this.addParticle(scene, width, height, fromX, fromY);
+
     scene.tweens.add({
       targets: this._image,
       scale: 0.1,
@@ -59,5 +64,42 @@ export default class Tail {
         callback();
       },
     });
+  }
+
+  addParticle(scene, width, height, fromX, fromY) {
+    if (this._type >= NUM_COLOR) {
+      let emitter;
+      switch (this._type) {
+        case 6:
+          const lineVertical = new Phaser.Geom.Line(
+            0,
+            fromY - this._image.y,
+            0,
+            (height - this._image.height) * SCALE_GAME + fromY - this._image.y
+          );
+          PARTICLE_VERTICAL.emitZone = { type: 'edge', source: lineVertical, quantity: 24, total: 64 };
+
+          emitter = scene.add.particles(this._image.x, this._image.y, 'ellipse', PARTICLE_VERTICAL);
+          break;
+        case 7:
+          const lineHorizontal = new Phaser.Geom.Line(
+            fromX - this._image.x,
+            0,
+            (width - this._image.width) * SCALE_GAME + fromX - this._image.x,
+            0
+          );
+          PARTICLE_HORIZONTAL.emitZone = { type: 'edge', source: lineHorizontal, quantity: 24, total: 64 };
+
+          emitter = scene.add.particles(this._image.x, this._image.y, 'ellipse', PARTICLE_HORIZONTAL);
+          break;
+        default:
+          emitter = scene.add.particles(this._image.x, this._image.y, 'ellipse', PARTICLE_BOMB);
+      }
+      emitter.setDepth(1);
+
+      emitter.on('start', (emitter) => {
+        console.log(emitter);
+      });
+    }
   }
 }
