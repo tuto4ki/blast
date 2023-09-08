@@ -1,9 +1,10 @@
 import Phaser from 'phaser';
 
-import { SCORE_STYLE, SCORE_TITLE_STYLE, MOVE_STYLE, SCALE_GAME, PROGRESS_TITLE_STYLE } from '../constStype';
+import { STYLE_COMMON, SCORE_STYLE, SCORE_TITLE_STYLE, MOVE_STYLE, SCALE_GAME, PROGRESS_TITLE_STYLE } from '../constStype';
+import { POSITION_PB_BG, POSITION_PB_DARK, POSITION_PB_GREEN_L, POSITION_TITLE_PB, POSITION_MOVES, POSITION_SCORE_BG, POSITION_TEXT_MOVE, POSITION_TITLE_SCORE, POSITION_TEXT_SCORE } from './constProgressView';
 
 export default class ProgressView extends Phaser.GameObjects.Container {
-  scene;
+
   _textScore;
   _textMove;
   _maxWidthPB;
@@ -13,36 +14,35 @@ export default class ProgressView extends Phaser.GameObjects.Container {
   _imageCenterPB;
 
   constructor(scene, x, y) {
-    super(scene, x, y);
-    this.scene = scene;
+    super(scene, x * SCALE_GAME, y * SCALE_GAME);
 
     this.scene.add
-      .image(932 * SCALE_GAME, -80 * SCALE_GAME, 'progressBarBg')
+      .image(POSITION_PB_BG.x * SCALE_GAME, POSITION_PB_BG.y * SCALE_GAME, 'progressBarBg')
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
 
     const picture = this.scene.add
-      .image(965 * SCALE_GAME, 110 * SCALE_GAME, 'darkBlueProgressBar')
+      .image(POSITION_PB_DARK.x * SCALE_GAME, POSITION_PB_DARK.y * SCALE_GAME, 'darkBlueProgressBar')
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
 
     this._imageLeftPB = this.scene.add
-      .image(971 * SCALE_GAME, 116 * SCALE_GAME, 'greenPBLeft')
+      .image(POSITION_PB_GREEN_L.x * SCALE_GAME, POSITION_PB_GREEN_L.y * SCALE_GAME, 'greenPBLeft')
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
 
-    this._startRightPB = (971 + this._imageLeftPB.width) * SCALE_GAME;
+    this._startRightPB = (POSITION_PB_GREEN_L.x + this._imageLeftPB.width) * SCALE_GAME;
 
     this._imageCenterPB = this.scene.add
-      .image(this._startRightPB, 116 * SCALE_GAME, 'greenPBCenter')
+      .image(this._startRightPB, POSITION_PB_GREEN_L.y * SCALE_GAME, 'greenPBCenter')
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
     this._imageRightPB = this.scene.add
-      .image(this._startRightPB, 116 * SCALE_GAME, 'greenPBRight')
+      .image(this._startRightPB, POSITION_PB_GREEN_L.y * SCALE_GAME, 'greenPBRight')
       .setScale(SCALE_GAME)
       .setOrigin(0)
       .setDepth(1);
@@ -50,27 +50,27 @@ export default class ProgressView extends Phaser.GameObjects.Container {
     this._maxWidthPB = (picture.width - this._imageLeftPB.width - this._imageRightPB.width) * SCALE_GAME;
 
     this.scene.add
-      .text(1435 * SCALE_GAME, 8 * SCALE_GAME, 'ПРОГРЕСС', PROGRESS_TITLE_STYLE)
+      .text(POSITION_TITLE_PB.x * SCALE_GAME, POSITION_TITLE_PB.y * SCALE_GAME, 'ПРОГРЕСС', { ...STYLE_COMMON, fontSize: `${PROGRESS_TITLE_STYLE * SCALE_GAME}px`})
       .setOrigin(0)
       .setDepth(1);
 
-    this.scene.add.image(x, y, 'progressGameBg').setScale(SCALE_GAME).setOrigin(0.5);
+    this.scene.add.image(this.x, this.y, 'progressGameBg').setScale(SCALE_GAME).setOrigin(0.5);
 
     this.scene.add
-      .image(x, y - 49, 'moves')
+      .image(this.x + POSITION_MOVES.x * SCALE_GAME, this.y + POSITION_MOVES.y * SCALE_GAME, 'moves')
       .setScale(SCALE_GAME)
       .setOrigin(0.5);
 
     this.scene.add
-      .image(x, y + 66, 'scoreBg')
+      .image(this.x + POSITION_SCORE_BG.x * SCALE_GAME, this.y + POSITION_SCORE_BG.y * SCALE_GAME, 'scoreBg')
       .setScale(SCALE_GAME)
       .setOrigin(0.5);
 
-    this._textMove = this.scene.add.text(x + 5, y - 55, '37', MOVE_STYLE).setOrigin(0.5, 0.5);
+    this._textMove = this.scene.add.text(this.x + POSITION_TEXT_MOVE.x * SCALE_GAME, this.y + POSITION_TEXT_MOVE.y * SCALE_GAME, '', { ...STYLE_COMMON, fontSize: `${MOVE_STYLE * SCALE_GAME}px`}).setOrigin(0.5);
 
-    this.scene.add.text(x, y + 45, 'очки:', SCORE_TITLE_STYLE).setOrigin(0.5, 0.5);
+    this.scene.add.text(this.x + POSITION_TITLE_SCORE.x * SCALE_GAME, this.y + POSITION_TITLE_SCORE.y * SCALE_GAME, 'очки:', { ...STYLE_COMMON, fontSize: `${SCORE_TITLE_STYLE * SCALE_GAME}px`}).setOrigin(0.5);
 
-    this._textScore = this.scene.add.text(x, y + 77, '221', SCORE_STYLE).setOrigin(0.5, 0.5);
+    this._textScore = this.scene.add.text(this.x + POSITION_TEXT_SCORE.x * SCALE_GAME, this.y + POSITION_TEXT_SCORE.y * SCALE_GAME, '0', { ...STYLE_COMMON, fontSize: `${SCORE_STYLE * SCALE_GAME}px`}).setOrigin(0.5);
 
     this.updateProgress = this.updateProgress.bind(this);
   }

@@ -7,40 +7,31 @@ export const PADDING = {
   y: 45.5,
 };
 
-export const BUTTON_STYLE = {
+export const POSITION_BLAST = {
+  x: 940,
+  y: 1340,
+};
+
+export const POSITION_PROGRESS = {
+  x: 2740,
+  y: 1060,
+};
+
+export const STYLE_COMMON = {
   fontFamily: 'marvinFont',
-  fontSize: '70px',
   color: '#fff',
   align: 'center',
 };
 
-export const SCORE_STYLE = {
-  fontFamily: 'marvinFont',
-  fontSize: '35px',
-  color: '#fff',
-  align: 'center',
-};
+export const BUTTON_STYLE = 280;
 
-export const SCORE_TITLE_STYLE = {
-  fontFamily: 'marvinFont',
-  fontSize: '20px',
-  color: '#fff',
-  align: 'center',
-};
+export const SCORE_STYLE = 140;
 
-export const MOVE_STYLE = {
-  fontFamily: 'marvinFont',
-  fontSize: '58px',
-  color: '#fff',
-  align: 'center',
-};
+export const SCORE_TITLE_STYLE = 80;
 
-export const PROGRESS_TITLE_STYLE = {
-  fontFamily: 'marvinFont',
-  fontSize: '17px',
-  color: '#fff',
-  align: 'center',
-};
+export const MOVE_STYLE = 232;
+
+export const PROGRESS_TITLE_STYLE = 68;
 
 export const GAME_BACKGROUND = '#A3A3A3';
 export const COLOR_BACKGROUND = '#0D233D';

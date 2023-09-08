@@ -17,7 +17,7 @@ export class BlastView extends Phaser.GameObjects.Container {
   _heightField;
 
   constructor(scene, x, y, controller) {
-    super(scene, x, y);
+    super(scene, x * SCALE_GAME, y * SCALE_GAME);
     this._controller = controller;
     this._tails = new Map();
     this.updateField = this.updateField.bind(this);
@@ -34,8 +34,8 @@ export class BlastView extends Phaser.GameObjects.Container {
 
     resizePicture(
       this.scene,
-      x,
-      y,
+      this.x,
+      this.y,
       SCALE_GAME,
       this._heightField,
       this._widthField,
