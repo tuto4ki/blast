@@ -5,6 +5,8 @@ export const SCENE_GAME_OVER = 'GameOver';
 
 export const NUM_COLOR = 5;
 
+export const NUM_REMOVE = 2;
+
 export const ROWS = 9;
 export const COLUMNS = 9;
 
