@@ -26,12 +26,12 @@ module.exports = {
         }
       },
       {
-        test: /\.(gif|png|jpe?g|svg|xml)$/i,
+        test: /\.(gif|png|jpe?g|svg|xml|woff2?|eot|ttf|otf)$/i,
         loader: 'file-loader',
         options: {
-          name: '[path][name].[ext]'
+          name: 'assets/[name].[ext]'
         }
-      }
+      },
     ]
   },
   plugins: [
