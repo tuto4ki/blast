@@ -1,4 +1,4 @@
-import { Cell } from './cell';
+import { Cell } from './Cell';
 import { MAX_SCORE, MAX_COUNT_MOVE } from '../constGame';
 
 export default class BlastModel {

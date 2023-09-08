@@ -68,28 +68,26 @@ export default class Tail {
 
   addParticle(scene, width, height, fromX, fromY) {
     if (this._type >= NUM_COLOR) {
+      const lineVertical = new Phaser.Geom.Line(
+        0,
+        fromY - this._image.y,
+        0,
+        (height - this._image.height) * SCALE_GAME + fromY - this._image.y
+      );
+      const lineHorizontal = new Phaser.Geom.Line(
+        fromX - this._image.x,
+        0,
+        (width - this._image.width) * SCALE_GAME + fromX - this._image.x,
+        0
+      );
       let emitter;
       switch (this._type) {
         case 6:
-          const lineVertical = new Phaser.Geom.Line(
-            0,
-            fromY - this._image.y,
-            0,
-            (height - this._image.height) * SCALE_GAME + fromY - this._image.y
-          );
           PARTICLE_VERTICAL.emitZone = { type: 'edge', source: lineVertical, quantity: 24, total: 64 };
-
           emitter = scene.add.particles(this._image.x, this._image.y, 'ellipse', PARTICLE_VERTICAL);
           break;
         case 7:
-          const lineHorizontal = new Phaser.Geom.Line(
-            fromX - this._image.x,
-            0,
-            (width - this._image.width) * SCALE_GAME + fromX - this._image.x,
-            0
-          );
           PARTICLE_HORIZONTAL.emitZone = { type: 'edge', source: lineHorizontal, quantity: 24, total: 64 };
-
           emitter = scene.add.particles(this._image.x, this._image.y, 'ellipse', PARTICLE_HORIZONTAL);
           break;
         default:

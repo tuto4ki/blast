@@ -1,10 +1,26 @@
 import Phaser from 'phaser';
 
-import { STYLE_COMMON, SCORE_STYLE, SCORE_TITLE_STYLE, MOVE_STYLE, SCALE_GAME, PROGRESS_TITLE_STYLE } from '../constStype';
-import { POSITION_PB_BG, POSITION_PB_DARK, POSITION_PB_GREEN_L, POSITION_TITLE_PB, POSITION_MOVES, POSITION_SCORE_BG, POSITION_TEXT_MOVE, POSITION_TITLE_SCORE, POSITION_TEXT_SCORE } from './constProgressView';
+import {
+  STYLE_COMMON,
+  SCORE_STYLE,
+  SCORE_TITLE_STYLE,
+  MOVE_STYLE,
+  SCALE_GAME,
+  PROGRESS_TITLE_STYLE,
+} from '../constStype';
+import {
+  POSITION_PB_BG,
+  POSITION_PB_DARK,
+  POSITION_PB_GREEN_L,
+  POSITION_TITLE_PB,
+  POSITION_MOVES,
+  POSITION_SCORE_BG,
+  POSITION_TEXT_MOVE,
+  POSITION_TITLE_SCORE,
+  POSITION_TEXT_SCORE,
+} from './constProgressView';
 
 export default class ProgressView extends Phaser.GameObjects.Container {
-
   _textScore;
   _textMove;
   _maxWidthPB;
@@ -50,7 +66,10 @@ export default class ProgressView extends Phaser.GameObjects.Container {
     this._maxWidthPB = (picture.width - this._imageLeftPB.width - this._imageRightPB.width) * SCALE_GAME;
 
     this.scene.add
-      .text(POSITION_TITLE_PB.x * SCALE_GAME, POSITION_TITLE_PB.y * SCALE_GAME, 'ПРОГРЕСС', { ...STYLE_COMMON, fontSize: `${PROGRESS_TITLE_STYLE * SCALE_GAME}px`})
+      .text(POSITION_TITLE_PB.x * SCALE_GAME, POSITION_TITLE_PB.y * SCALE_GAME, 'ПРОГРЕСС', {
+        ...STYLE_COMMON,
+        fontSize: `${PROGRESS_TITLE_STYLE * SCALE_GAME}px`,
+      })
       .setOrigin(0)
       .setDepth(1);
 
@@ -66,11 +85,26 @@ export default class ProgressView extends Phaser.GameObjects.Container {
       .setScale(SCALE_GAME)
       .setOrigin(0.5);
 
-    this._textMove = this.scene.add.text(this.x + POSITION_TEXT_MOVE.x * SCALE_GAME, this.y + POSITION_TEXT_MOVE.y * SCALE_GAME, '', { ...STYLE_COMMON, fontSize: `${MOVE_STYLE * SCALE_GAME}px`}).setOrigin(0.5);
+    this._textMove = this.scene.add
+      .text(this.x + POSITION_TEXT_MOVE.x * SCALE_GAME, this.y + POSITION_TEXT_MOVE.y * SCALE_GAME, '', {
+        ...STYLE_COMMON,
+        fontSize: `${MOVE_STYLE * SCALE_GAME}px`,
+      })
+      .setOrigin(0.5);
 
-    this.scene.add.text(this.x + POSITION_TITLE_SCORE.x * SCALE_GAME, this.y + POSITION_TITLE_SCORE.y * SCALE_GAME, 'очки:', { ...STYLE_COMMON, fontSize: `${SCORE_TITLE_STYLE * SCALE_GAME}px`}).setOrigin(0.5);
+    this.scene.add
+      .text(this.x + POSITION_TITLE_SCORE.x * SCALE_GAME, this.y + POSITION_TITLE_SCORE.y * SCALE_GAME, 'очки:', {
+        ...STYLE_COMMON,
+        fontSize: `${SCORE_TITLE_STYLE * SCALE_GAME}px`,
+      })
+      .setOrigin(0.5);
 
-    this._textScore = this.scene.add.text(this.x + POSITION_TEXT_SCORE.x * SCALE_GAME, this.y + POSITION_TEXT_SCORE.y * SCALE_GAME, '0', { ...STYLE_COMMON, fontSize: `${SCORE_STYLE * SCALE_GAME}px`}).setOrigin(0.5);
+    this._textScore = this.scene.add
+      .text(this.x + POSITION_TEXT_SCORE.x * SCALE_GAME, this.y + POSITION_TEXT_SCORE.y * SCALE_GAME, '0', {
+        ...STYLE_COMMON,
+        fontSize: `${SCORE_STYLE * SCALE_GAME}px`,
+      })
+      .setOrigin(0.5);
 
     this.updateProgress = this.updateProgress.bind(this);
   }

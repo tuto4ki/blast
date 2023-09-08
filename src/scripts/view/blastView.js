@@ -1,11 +1,11 @@
 import Phaser from 'phaser';
 
-import Tail from './tail';
+import Tail from './Tail';
 import { resizePicture } from '../utils';
 import { PADDING, SCALE_GAME } from '../constStype';
 import { COLUMNS, ROWS, SCENE_GAME, SCENE_GAME_OVER } from '../constGame';
 
-export class BlastView extends Phaser.GameObjects.Container {
+export default class BlastView extends Phaser.GameObjects.Container {
   _tails;
   _controller;
   _fromX;

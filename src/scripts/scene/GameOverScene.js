@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
-import { Button } from '../button';
-import { COLOR_BACKGROUND, BUTTON_STYLE, SCALE_GAME } from '../constStype';
+import Button from '../Button';
+import { COLOR_BACKGROUND, BUTTON_STYLE, SCALE_GAME, STYLE_COMMON } from '../constStype';
 import { SCENE_GAME_OVER, SCENE_GAME } from '../constGame';
 
 const POSITION = 200;
@@ -26,12 +26,18 @@ export default class GameOverScene extends Phaser.Scene {
     this.cameras.main.setBackgroundColor(COLOR_BACKGROUND);
 
     scene.add
-      .text(widthPart, heightPart - POSITION * SCALE_GAME, 'КОНЕЦ ИГРЫ', BUTTON_STYLE)
+      .text(widthPart, heightPart - POSITION * SCALE_GAME, 'КОНЕЦ ИГРЫ', {
+        ...STYLE_COMMON,
+        fontSize: `${BUTTON_STYLE * SCALE_GAME}px`,
+      })
       .setScale(SCALE_GAME)
       .setOrigin(0.5, 0.5);
 
     scene.add
-      .text(widthPart, heightPart, this._isWin ? 'ВЫ ВЫИГРАЛИ' : 'ВЫ ПРОИГРАЛИ', BUTTON_STYLE)
+      .text(widthPart, heightPart, this._isWin ? 'ВЫ ВЫИГРАЛИ' : 'ВЫ ПРОИГРАЛИ', {
+        ...STYLE_COMMON,
+        fontSize: `${BUTTON_STYLE * SCALE_GAME}px`,
+      })
       .setScale(SCALE_GAME)
       .setOrigin(0.5, 0.5);
 

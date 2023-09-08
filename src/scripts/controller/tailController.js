@@ -1,5 +1,3 @@
-import Phaser from 'phaser';
-
 import { NUM_REMOVE } from '../constGame';
 
 export default class TailController {
@@ -11,7 +9,7 @@ export default class TailController {
 
   getNumRemoveCells({ x, y }, numColor) {
     const mapRemove = new Map();
-    const removeCells = this.searchCellsRemovedR({ x, y}, numColor, mapRemove).size;
+    const removeCells = this.searchCellsRemovedR({ x, y }, numColor, mapRemove).size;
 
     if (removeCells >= NUM_REMOVE) {
       this.removeCells(mapRemove);

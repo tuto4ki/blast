@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 
 import { SCENE_START, SCENE_GAME } from '../constGame';
-import { Button } from '../button';
+import Button from '../Button';
 import { COLOR_BACKGROUND } from '../constStype';
 
 export default class StartScene extends Phaser.Scene {

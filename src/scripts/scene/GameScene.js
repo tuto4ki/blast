@@ -2,10 +2,10 @@ import Phaser from 'phaser';
 
 import { GAME_BACKGROUND, POSITION_BLAST, POSITION_PROGRESS } from '../constStype';
 import { SCENE_GAME, COLUMNS, ROWS } from '../constGame';
-import { BlastView } from '../view/blastView';
-import BlastModel from '../model/blastModel';
-import { Controller } from '../controller/controller';
-import ProgressView from '../view/progressView';
+import BlastView from '../view/BlastView';
+import BlastModel from '../model/BlastModel';
+import Controller from '../controller/Controller';
+import ProgressView from '../view/ProgressView';
 
 export default class GameScene extends Phaser.Scene {
   _model;

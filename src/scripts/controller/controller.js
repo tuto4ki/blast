@@ -1,10 +1,10 @@
-import GameOverController from './gameOverController';
-import ShuffleController from './shuffleController';
-import SuperTailController from './supeTailController';
+import GameOverController from './GameOverController';
+import ShuffleController from './ShuffleController';
+import SuperTailController from './SupeTailController';
+import TailController from './TailController';
 import { NUM_COLOR, NUM_REMOVE } from '../constGame';
-import TailController from './tailController';
 
-export class Controller {
+export default class Controller {
   _model;
   _gameOverController;
   _superTailController;
